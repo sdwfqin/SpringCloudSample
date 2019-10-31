@@ -8,6 +8,12 @@
 4. eureka-client 服务提供者（微服务）
 5. eureka-consumer 服务消费者（微服务）
 
+## 版本信息
+
+1. java 1.8
+2. spring-boot 2.2.0.RELEASE
+3. spring-cloud Hoxton.RC1
+
 ## 已添加内容
 
 1. eureka 注册中心
