@@ -1,0 +1,13 @@
+spring:
+  application:
+    # 指定微服务的名称
+    name: api-zuul
+
+server:
+  port: 8002
+
+eureka:
+  client:
+    serviceUrl:
+      # 指定服务注册中心的位置
+      defaultZone: http://localhost:8001/eureka/
