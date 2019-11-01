@@ -1,31 +1,30 @@
 package com.sdwfqin.eurekaconsumer.controller;
 
+import com.sdwfqin.eurekaconsumer.service.HystrixConsumerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
- * 通过Ribbon来获取某个服务的具体实例
+ * 带有服务降级的
  * <p>
  *
  * @author 张钦
  * @date 2019/10/31
  */
 @Slf4j
-@RequestMapping("/ribbon")
+@RequestMapping("/hystrix")
 @RestController
-public class RibbonController {
+public class HystrixController {
 
     @Autowired
-    RestTemplate restTemplate;
+    HystrixConsumerService mHystrixConsumerService;
 
     @GetMapping("/consumer")
     public String consumer() {
-        return restTemplate.getForObject("http://eureka-client/dc", String.class);
+        return mHystrixConsumerService.consumer();
     }
+
 }

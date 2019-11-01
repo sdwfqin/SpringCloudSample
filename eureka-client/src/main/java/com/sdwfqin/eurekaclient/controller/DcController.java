@@ -14,7 +14,9 @@ public class DcController {
     DiscoveryClient mDiscoveryClient;
 
     @GetMapping("/dc")
-    public String dc() {
+    public String dc() throws Exception {
+        // TODO 测试服务容错（降级）
+        // Thread.sleep(5000L);
         String services = "Services: " + mDiscoveryClient.getServices();
         log.info(services);
         return "eureka-client返回的数据：" + services;

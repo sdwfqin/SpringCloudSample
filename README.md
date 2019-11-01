@@ -20,16 +20,16 @@
 2. zuul 网关中心
 3. ribbon 负载均衡，获取服务提供者地址
 4. feign 声明式服务调用（简化ribbon）
+5. Hystrix 服务容错保护
 
 ## TODO
 
 1. Config 分布式配置中心
-2. Hystrix 服务容错保护
-3. Stream 消息总线
-4. Sleuth 服务跟踪
-5. Oauth2.0 认证授权（使用redis作为缓存）
-6. 日志
-7. RESTful API
-8. 统一异常处理
-9. Mysql MHA高可用架构
-10. 前端Demo（React，Ant Design Pro）
+2. Stream 消息总线
+3. Sleuth 服务跟踪
+4. Oauth2.0 认证授权（使用redis作为缓存）
+5. 日志
+6. RESTful API
+7. 统一异常处理
+8. Mysql MHA高可用架构
+9. 前端Demo（React，Ant Design Pro）

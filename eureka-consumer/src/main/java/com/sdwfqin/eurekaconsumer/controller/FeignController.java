@@ -24,7 +24,7 @@ public class FeignController {
     DcClient dcClient;
 
     @GetMapping("/consumer")
-    public String dc() {
+    public String consumer() {
         return dcClient.consumer();
     }
 }
