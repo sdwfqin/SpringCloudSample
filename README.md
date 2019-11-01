@@ -22,14 +22,17 @@
 4. feign 声明式服务调用（简化ribbon）
 5. Hystrix 服务容错保护
 
+## 进行中
+
+1. Oauth2.0 认证授权（使用redis作为缓存）
+
 ## TODO
 
 1. Config 分布式配置中心
 2. Stream 消息总线
 3. Sleuth 服务跟踪
-4. Oauth2.0 认证授权（使用redis作为缓存）
-5. 日志
-6. RESTful API
-7. 统一异常处理
-8. Mysql MHA高可用架构
-9. 前端Demo（React，Ant Design Pro）
+4. 日志
+5. RESTful API
+6. 统一异常处理
+7. Mysql MHA高可用架构
+8. 前端Demo（React，Ant Design Pro）

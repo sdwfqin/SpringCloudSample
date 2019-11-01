@@ -1,0 +1,40 @@
+server:
+  port: 8005
+
+spring:
+  application:
+    # 指定微服务的名称
+    name: service-auth
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud_sample?useUnicode=true&characterEncoding=UTF-8&characterSetResults=utf8&serverTimezone=GMT&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345678
+    sql-script-encoding: utf-8
+  redis:
+    # Redis数据库索引（默认为0 redis有16个库）
+    database: 0
+    # Redis服务器地址
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # 连接超时时间（毫秒）
+    timeout: 2000
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+
+eureka:
+  client:
+    serviceUrl:
+      # 指定服务注册中心的位置
+      defaultZone: http://localhost:8001/eureka/
