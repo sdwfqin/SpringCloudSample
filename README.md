@@ -3,7 +3,7 @@
 ## module描述
 
 1. common-utils 公共工具
-2. eureka-services 服务注册
+2. eureka-service 服务注册
 3. api-zuul 服务网关
 4. eureka-client 服务提供者（微服务）
 5. eureka-consumer 服务消费者（微服务）

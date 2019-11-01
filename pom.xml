@@ -11,7 +11,7 @@
 
     <modules>
         <module>common-utils</module>
-        <module>eureka-services</module>
+        <module>eureka-service</module>
         <module>api-zuul</module>
         <module>eureka-client</module>
         <module>eureka-consumer</module>

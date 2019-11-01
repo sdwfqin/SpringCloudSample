@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sdwfqin</groupId>
-    <artifactId>eureka-services</artifactId>
+    <artifactId>eureka-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka-services</name>
+    <name>eureka-service</name>
     <description>注册中心</description>
 
     <properties>
