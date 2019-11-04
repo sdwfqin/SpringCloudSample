@@ -1,6 +1,9 @@
 package com.sdwfqin.eurekaconsumer.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.sdwfqin.commonutils.result.Result;
+import com.sdwfqin.commonutils.result.ResultEnum;
+import com.sdwfqin.commonutils.result.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -22,11 +25,11 @@ public class HystrixConsumerService {
      * 服务降级、依赖隔离、断路器
      */
     @HystrixCommand(fallbackMethod = "helloFallBack")
-    public String consumer() {
-        return restTemplate.getForObject("http://eureka-client/dc", String.class);
+    public Result consumer() {
+        return restTemplate.getForObject("http://eureka-client/dc", Result.class);
     }
 
-    public String helloFallBack() {
-        return "error";
+    public Result helloFallBack() {
+        return ResultUtils.errorData(ResultEnum.ERROR);
     }
 }

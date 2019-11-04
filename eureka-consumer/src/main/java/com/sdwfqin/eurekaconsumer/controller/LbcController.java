@@ -1,5 +1,6 @@
 package com.sdwfqin.eurekaconsumer.controller;
 
+import com.sdwfqin.commonutils.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -32,10 +33,10 @@ public class LbcController {
      * 最后再利用RestTemplate对象实现对服务提供者接口的调用。
      */
     @GetMapping("/consumer")
-    public String dc() {
+    public Result dc() {
         ServiceInstance serviceInstance = loadBalancerClient.choose("eureka-client");
         String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/dc";
         log.info(url);
-        return restTemplate.getForObject(url, String.class);
+        return restTemplate.getForObject(url, Result.class);
     }
 }

@@ -1,9 +1,8 @@
 package com.sdwfqin.eurekaconsumer.controller;
 
+import com.sdwfqin.commonutils.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +24,7 @@ public class RibbonController {
     RestTemplate restTemplate;
 
     @GetMapping("/consumer")
-    public String consumer() {
-        return restTemplate.getForObject("http://eureka-client/dc", String.class);
+    public Result consumer() {
+        return restTemplate.getForObject("http://eureka-client/dc", Result.class);
     }
 }

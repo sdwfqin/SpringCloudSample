@@ -1,5 +1,6 @@
 package com.sdwfqin.eurekaconsumer.controller;
 
+import com.sdwfqin.commonutils.result.Result;
 import com.sdwfqin.eurekaconsumer.service.HystrixConsumerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class HystrixController {
     HystrixConsumerService mHystrixConsumerService;
 
     @GetMapping("/consumer")
-    public String consumer() {
+    public Result consumer() {
         return mHystrixConsumerService.consumer();
     }
 

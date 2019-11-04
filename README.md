@@ -32,7 +32,5 @@
 2. Stream 消息总线
 3. Sleuth 服务跟踪
 4. 日志
-5. RESTful API
-6. 统一异常处理
-7. Mysql MHA高可用架构
-8. 前端Demo（React，Ant Design Pro）
+5. Mysql MHA高可用架构
+6. 前端Demo（React，Ant Design Pro）
