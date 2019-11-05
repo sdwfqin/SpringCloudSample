@@ -30,8 +30,8 @@ public class AuthUserDetailsService implements UserDetailsService {
         }
         UserDo userDo = userDos.get(0);
         List<RoleDo> roleDos = mUserRoleDao.listRoleByUserId(userDo.getId());
-        log.info(roleDos.toString());
         userDo.setAuthorities(roleDos);
+        log.info(userDo.toString());
         return userDo;
     }
 }

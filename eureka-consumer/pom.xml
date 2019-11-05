@@ -58,6 +58,11 @@
             <artifactId>spring-cloud-starter-hystrix</artifactId>
             <version>1.4.7.RELEASE</version>
         </dependency>
+        <!-- 对spring-cloud-starter-security、spring-security-oauth2、spring-security-jwt这3个依赖的整合 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -35,11 +35,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
-        <!-- 对spring-cloud-starter-security、spring-security-oauth2、spring-security-jwt这3个依赖的整合 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>

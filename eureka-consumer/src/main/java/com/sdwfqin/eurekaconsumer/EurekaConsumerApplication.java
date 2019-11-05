@@ -7,8 +7,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.client.RestTemplate;
 
+@EnableResourceServer
 // 使用@EnableCircuitBreaker或@EnableHystrix注解开启Hystrix的使用
 @EnableCircuitBreaker
 // 通过@EnableFeignClients注解开启扫描Spring Cloud Feign客户端的功能

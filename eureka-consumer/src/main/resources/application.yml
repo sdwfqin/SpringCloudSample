@@ -11,3 +11,14 @@ eureka:
     serviceUrl:
       # 指定服务注册中心的位置
       defaultZone: http://localhost:8001/eureka/
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8002/service-auth/user/current
+    client:
+      id: service
+      client-secret: 123456
+      access-token-uri: http://localhost:8002/service-auth/oauth/token
+      grant-type: client_credentials,refresh_token
+      scope: service

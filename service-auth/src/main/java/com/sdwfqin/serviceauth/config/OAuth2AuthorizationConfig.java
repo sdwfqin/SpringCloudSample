@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -30,6 +31,8 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthUserDetailsService userDetailService;
 
+    private static final String finalSecret =  "{bcrypt}" + new BCryptPasswordEncoder().encode("123456");
+
     @Bean
     public TokenStore tokenStore() {
         return new RedisTokenStore(redisConnectionFactory);
@@ -39,17 +42,18 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // 将客户端的信息存储在内存中
         clients.inMemory()
-                // 创建了一个client名为browser的客户端
+                // 创建了一个client名为android的客户端
                 .withClient("android")
+                .secret(finalSecret)
                 // 配置验证类型
-                .authorizedGrantTypes("refresh_token", "password")
-                // 配置客户端域为“ui”
+                .authorizedGrantTypes("password", "refresh_token")
+                // 配置客户端域
                 .scopes("mobile")
                 .and()
-                .withClient("service-hi")
-                .secret("123456")
-                .authorizedGrantTypes("client_credentials", "refresh_token", "password")
-                .scopes("server");
+                .withClient("service")
+                .secret(finalSecret)
+                .authorizedGrantTypes("client_credentials", "refresh_token")
+                .scopes("service");
     }
 
     @Override
@@ -66,6 +70,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
+                // 允许表单认证
                 .allowFormAuthenticationForClients()
                 // 对获取Token的请求不再拦截
                 .tokenKeyAccess("permitAll()")
