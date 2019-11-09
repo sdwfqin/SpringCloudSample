@@ -27,14 +27,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         // resources.resourceId("service-auth");
         //当权限不足时返回
         resources.accessDeniedHandler((request, response, e) -> {
-            log.error("权限不足{}",e);
+            log.error("【accessDeniedHandler】{}",e);
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter()
                     .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.AUTHORITY_ERROR)));
         });
         //当token不正确时返回
         resources.authenticationEntryPoint((request, response, e) -> {
-            log.error("Token不正确{}",e);
+            log.error("【authenticationEntryPoint】{}",e);
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter()
                     .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.TOKEN_ERROR)));
@@ -47,7 +47,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint((req, resp, exception) -> {
-                    log.error("Token不正确{}",exception);
+                    log.error("【authenticationEntryPoint】{}",exception);
                     resp.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
                     resp.getWriter()
                             .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.TOKEN_ERROR)));

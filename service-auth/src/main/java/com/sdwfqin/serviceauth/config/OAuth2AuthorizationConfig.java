@@ -50,14 +50,11 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .authorizedGrantTypes("password", "refresh_token")
                 // 配置客户端域
                 .scopes("mobile")
-                .authorities("client")
                 .and()
                 .withClient("service")
                 .secret(finalSecret)
                 .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("service")
-                .authorities("service")
-        ;
+                .scopes("service");
     }
 
     @Override
