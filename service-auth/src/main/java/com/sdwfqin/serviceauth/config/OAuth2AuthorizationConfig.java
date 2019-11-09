@@ -31,7 +31,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthUserDetailsService userDetailService;
 
-    private static final String finalSecret =  "{bcrypt}" + new BCryptPasswordEncoder().encode("123456");
+    private static final String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("sdwfqin");
 
     @Bean
     public TokenStore tokenStore() {
@@ -45,26 +45,31 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 // 创建了一个client名为android的客户端
                 .withClient("android")
                 .secret(finalSecret)
+                // .resourceIds("service-auth")
                 // 配置验证类型
                 .authorizedGrantTypes("password", "refresh_token")
                 // 配置客户端域
                 .scopes("mobile")
+                .authorities("client")
                 .and()
                 .withClient("service")
                 .secret(finalSecret)
                 .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("service");
+                .scopes("service")
+                .authorities("service")
+        ;
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // 配置Token的存储方式
-        endpoints.tokenStore(tokenStore())
+        endpoints
                 // 读取用户的验证信息
                 .userDetailsService(userDetailService)
                 // 注入WebSecurityConfig配置的bean
-                .authenticationManager(authenticationManager);
-        endpoints.tokenServices(redisTokenServices());
+                .authenticationManager(authenticationManager)
+                .tokenStore(tokenStore())
+                .tokenServices(redisTokenServices());
     }
 
     @Override

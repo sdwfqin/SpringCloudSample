@@ -11,8 +11,8 @@
 ## 版本信息
 
 1. java 1.8
-2. spring-boot 2.2.0.RELEASE
-3. spring-cloud Hoxton.RC1
+2. spring-boot 2.1.10.RELEASE
+3. spring-cloud Greenwich.SR3
 
 ## 已添加内容
 

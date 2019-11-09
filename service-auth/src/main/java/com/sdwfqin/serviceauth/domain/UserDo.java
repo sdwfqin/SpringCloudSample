@@ -12,11 +12,8 @@ import java.util.List;
 public class UserDo implements UserDetails, Serializable {
 
     private Long id;
-
     private String username;
-
     private String password;
-
     private List<RoleDo> authorities;
 
     @Override
@@ -26,6 +23,7 @@ public class UserDo implements UserDetails, Serializable {
 
     /**
      * 过期性 :true:没过期 false:过期
+     *
      * @return
      */
     @Override
@@ -35,6 +33,7 @@ public class UserDo implements UserDetails, Serializable {
 
     /**
      * 锁定性 :true:未锁定 false:已锁定
+     *
      * @return
      */
     @Override
@@ -44,6 +43,7 @@ public class UserDo implements UserDetails, Serializable {
 
     /**
      * 有效性 :true:凭证有效 false:凭证无效
+     *
      * @return
      */
     @Override
@@ -53,6 +53,7 @@ public class UserDo implements UserDetails, Serializable {
 
     /**
      * 可用性 :true:可用 false:不可用
+     *
      * @return
      */
     @Override
