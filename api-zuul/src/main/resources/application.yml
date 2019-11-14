@@ -1,10 +1,27 @@
+server:
+  port: 8002
+
 spring:
   application:
     # 指定微服务的名称
-    name: api-zuul
+    name: api-gateway
 
-server:
-  port: 8002
+zuul:
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  ignoredServices: '*'
+  prefix: /api # 设置一个公共的前缀
+  routes:
+    auth-service:
+      path: /auth/**
+      sensitiveHeaders:
+      serviceId:  service-auth
+    order-service:
+      path: /consumer/**
+      sensitiveHeaders:
+      serviceId:  eureka-consumer
+  add-proxy-headers: true
 
 eureka:
   client:

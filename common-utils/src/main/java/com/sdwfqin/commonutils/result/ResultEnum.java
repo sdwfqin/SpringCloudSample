@@ -14,7 +14,8 @@ public enum ResultEnum {
     VALID_ERROR(2, "参数校验失败，请检查输入是否有误"),
     LOGIN_ERROR(3, "登录失败，用户名或密码错误"),
     TOKEN_ERROR(10001, "Token验证失败"),
-    AUTHORITY_ERROR(10002, "无权访问，请联系管理员");
+    AUTHORITY_ERROR(10002, "无权访问，请联系管理员"),
+    SERVICE_ERROR(10003, "服务异常");
 
     private Integer code;
     private String msg;

@@ -15,6 +15,7 @@
         <module>api-zuul</module>
         <module>eureka-client</module>
         <module>eureka-consumer</module>
+        <module>service-auth</module>
     </modules>
     <repositories>
         <repository>

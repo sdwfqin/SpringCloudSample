@@ -5,7 +5,6 @@ import com.sdwfqin.commonutils.result.ResultEnum;
 import com.sdwfqin.commonutils.result.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,14 +26,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         // resources.resourceId("service-auth");
         //当权限不足时返回
         resources.accessDeniedHandler((request, response, e) -> {
-            log.error("【accessDeniedHandler】{}",e);
+            log.error("【accessDeniedHandler】{}", e.getMessage());
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter()
                     .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.AUTHORITY_ERROR)));
         });
         //当token不正确时返回
         resources.authenticationEntryPoint((request, response, e) -> {
-            log.error("【authenticationEntryPoint】{}",e);
+            log.error("【authenticationEntryPoint】{}", e.getMessage());
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter()
                     .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.TOKEN_ERROR)));
@@ -45,14 +44,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         // 配置哪些请求需要验证
         http.csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint((req, resp, exception) -> {
-                    log.error("【authenticationEntryPoint】{}",exception);
-                    resp.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-                    resp.getWriter()
-                            .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.TOKEN_ERROR)));
-                })
-                .and()
+                .httpBasic().disable()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated();

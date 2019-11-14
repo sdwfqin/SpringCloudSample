@@ -7,11 +7,12 @@
 3. api-zuul 服务网关
 4. eureka-client 服务提供者（微服务）
 5. eureka-consumer 服务消费者（微服务）
+6. service-auth 认证服务
 
 ## 版本信息
 
 1. java 1.8
-2. spring-boot 2.1.10.RELEASE
+2. spring-boot 2.1.9.RELEASE
 3. spring-cloud Greenwich.SR3
 
 ## 已添加内容
