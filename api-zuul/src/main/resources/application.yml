@@ -17,14 +17,23 @@ zuul:
       path: /auth/**
       sensitiveHeaders:
       serviceId:  service-auth
-    order-service:
+    consumer-service:
       path: /consumer/**
       sensitiveHeaders:
       serviceId:  eureka-consumer
+    client-service:
+      path: /client/**
+      sensitiveHeaders:
+      serviceId:  eureka-client
   add-proxy-headers: true
+  include-debug-header: true
 
 eureka:
   client:
     serviceUrl:
       # 指定服务注册中心的位置
       defaultZone: http://localhost:8001/eureka/
+
+logging:
+  level:
+    com.netflix: DEBUG

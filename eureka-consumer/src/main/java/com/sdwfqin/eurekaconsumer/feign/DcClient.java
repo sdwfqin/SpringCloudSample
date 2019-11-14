@@ -1,4 +1,4 @@
-package com.sdwfqin.eurekaconsumer.dc;
+package com.sdwfqin.eurekaconsumer.feign;
 
 import com.sdwfqin.commonutils.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author 张钦
  * @date 2019/10/31
  */
-@FeignClient("eureka-client")
+@FeignClient(name = "eureka-client")
 public interface DcClient {
 
     @GetMapping("/dc")

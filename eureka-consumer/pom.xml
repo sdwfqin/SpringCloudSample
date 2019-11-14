@@ -41,11 +41,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!-- 基于Netflix Ribbon实现的一套客户端负载均衡的工具 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-ribbon</artifactId>
-            <version>1.4.7.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-ribbon</artifactId>-->
+<!--            <version>1.4.7.RELEASE</version>-->
+<!--        </dependency>-->
         <!-- 基于Netflix Feign实现的声明式服务调用客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -53,11 +53,11 @@
             <version>1.4.7.RELEASE</version>
         </dependency>
         <!-- 服务容错 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-            <version>1.4.7.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-hystrix</artifactId>-->
+<!--            <version>1.4.7.RELEASE</version>-->
+<!--        </dependency>-->
         <!-- 对spring-cloud-starter-security、spring-security-oauth2、spring-security-jwt这3个依赖的整合 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
