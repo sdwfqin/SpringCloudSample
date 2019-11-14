@@ -1,5 +1,7 @@
 # Spring Cloud入门
 
+![sample](/file/service_v1.0.png)
+
 ## module描述
 
 1. common-utils 公共工具
@@ -14,6 +16,10 @@
 1. java 1.8
 2. spring-boot 2.1.9.RELEASE
 3. spring-cloud Greenwich.SR3
+
+## Postman测试文件
+
+[查看接口](/file/SpringCloudSample.postman_collection.json)
 
 ## 已添加内容
 

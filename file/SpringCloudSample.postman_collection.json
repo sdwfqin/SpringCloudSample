@@ -1,0 +1,246 @@
+{
+  "info": {
+    "_postman_id": "67205c5f-0239-4bf3-ae6f-5e6472ff7092",
+    "name": "SpringCloudSample",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "oauth/token",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "android",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "sdwfqin",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "mobile",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "123456",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8002/api/auth/oauth/token",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8002",
+              "path": [
+                "api",
+                "auth",
+                "oauth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user/register",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "access_token",
+                "value": "355f2fea-b2bf-462d-b55a-424d463dd3a7",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "localhost:8002/api/auth/user/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "8002",
+              "path": [
+                "api",
+                "auth",
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "consumer",
+      "item": [
+        {
+          "name": "test",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2f6e6ffb-5a66-488c-8326-46a14c071e1f",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "access_token",
+                "value": "a88bccae-4036-4b4f-af48-90358c708d2e",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8002/api/consumer/test",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8002",
+              "path": [
+                "api",
+                "consumer",
+                "test"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "feign/consumer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2f6e6ffb-5a66-488c-8326-46a14c071e1f",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8002/api/consumer/feign/consumer",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8002",
+              "path": [
+                "api",
+                "consumer",
+                "feign",
+                "consumer"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "client",
+      "item": [
+        {
+          "name": "dc",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2f6e6ffb-5a66-488c-8326-46a14c071e1f",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8002/api/client/dc",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8002",
+              "path": [
+                "api",
+                "client",
+                "dc"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
