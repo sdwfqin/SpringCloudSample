@@ -20,12 +20,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        //设置资源服务器id,需要与认证服务器对应
-        // resources.resourceId("service-auth").stateless(true);
         //当权限不足时返回
         resources.accessDeniedHandler((request, response, e) -> {
             log.error("【accessDeniedHandler】{}", e.getMessage());
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            // 统一认证失败返回的异常
             response.getWriter()
                     .write(objectMapper.writeValueAsString(ResultUtils.errorData(ResultEnum.AUTHORITY_ERROR)));
         });

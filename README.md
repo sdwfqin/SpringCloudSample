@@ -39,5 +39,5 @@
 2. Stream 消息总线
 3. Sleuth 服务跟踪
 4. 日志
-5. Mysql MHA高可用架构
+5. TiDb
 6. 前端Demo（React，Ant Design Pro）

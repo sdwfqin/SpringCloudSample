@@ -1,7 +1,10 @@
 spring:
   application:
+    # 服务名
     name: eureka-server
+
 server:
+  # 端口
   port: 8001
 
 eureka:
