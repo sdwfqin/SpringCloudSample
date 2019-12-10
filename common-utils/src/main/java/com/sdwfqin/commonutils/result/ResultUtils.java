@@ -9,6 +9,14 @@ package com.sdwfqin.commonutils.result;
  */
 public class ResultUtils {
 
+    public static <T> Result<T> success() {
+        return resultData(ResultEnum.SUCCESS, null);
+    }
+
+    public static <T> Result<T> success(T t) {
+        return resultData(ResultEnum.SUCCESS, t);
+    }
+
     public static <T> Result<T> resultData(ResultEnum resultEnum, T t) {
         return resultData(resultEnum.getCode(), resultEnum.getMsg(), t);
     }

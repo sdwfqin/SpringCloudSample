@@ -11,9 +11,13 @@ import java.util.List;
 @Data
 public class UserDo implements UserDetails, Serializable {
 
+    private static final long serialVersionUID = 8396145734647793902L;
+
     private Long id;
     private String username;
     private String password;
+    // 昵称
+    private String nickName;
     private List<RoleDo> authorities;
 
     @Override
