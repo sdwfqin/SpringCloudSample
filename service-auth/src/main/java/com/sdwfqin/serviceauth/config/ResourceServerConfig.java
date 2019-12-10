@@ -1,8 +1,8 @@
 package com.sdwfqin.serviceauth.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sdwfqin.commonutils.result.ResultEnum;
-import com.sdwfqin.commonutils.result.ResultUtils;
+import com.sdwfqin.common.result.ResultEnum;
+import com.sdwfqin.common.result.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

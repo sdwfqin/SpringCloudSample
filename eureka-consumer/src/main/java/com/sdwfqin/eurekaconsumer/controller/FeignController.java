@@ -1,6 +1,6 @@
 package com.sdwfqin.eurekaconsumer.controller;
 
-import com.sdwfqin.commonutils.result.Result;
+import com.sdwfqin.common.result.Result;
 import com.sdwfqin.eurekaconsumer.feign.DcClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

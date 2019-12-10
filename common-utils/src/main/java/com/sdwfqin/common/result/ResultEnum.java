@@ -1,4 +1,4 @@
-package com.sdwfqin.commonutils.result;
+package com.sdwfqin.common.result;
 
 /**
  * 返回值code

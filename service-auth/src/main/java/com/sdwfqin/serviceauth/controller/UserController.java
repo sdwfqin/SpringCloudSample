@@ -1,16 +1,16 @@
 package com.sdwfqin.serviceauth.controller;
 
-import com.sdwfqin.commonutils.result.Result;
-import com.sdwfqin.commonutils.result.ResultUtils;
+import com.sdwfqin.common.result.Result;
+import com.sdwfqin.common.result.ResultUtils;
 import com.sdwfqin.serviceauth.domain.UserDo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

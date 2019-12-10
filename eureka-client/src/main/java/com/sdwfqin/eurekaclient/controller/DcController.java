@@ -1,8 +1,8 @@
 package com.sdwfqin.eurekaclient.controller;
 
-import com.sdwfqin.commonutils.result.Result;
-import com.sdwfqin.commonutils.result.ResultEnum;
-import com.sdwfqin.commonutils.result.ResultUtils;
+import com.sdwfqin.common.result.Result;
+import com.sdwfqin.common.result.ResultEnum;
+import com.sdwfqin.common.result.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

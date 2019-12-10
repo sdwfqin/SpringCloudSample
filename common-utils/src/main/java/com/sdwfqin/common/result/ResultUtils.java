@@ -1,4 +1,4 @@
-package com.sdwfqin.commonutils.result;
+package com.sdwfqin.common.result;
 
 /**
  * Result响应工具类

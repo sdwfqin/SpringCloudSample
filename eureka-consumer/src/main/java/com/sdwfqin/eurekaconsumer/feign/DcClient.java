@@ -1,6 +1,6 @@
 package com.sdwfqin.eurekaconsumer.feign;
 
-import com.sdwfqin.commonutils.result.Result;
+import com.sdwfqin.common.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

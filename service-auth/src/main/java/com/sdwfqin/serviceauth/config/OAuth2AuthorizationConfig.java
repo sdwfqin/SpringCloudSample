@@ -24,10 +24,8 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
-
     @Autowired
     private AuthUserDetailsService userDetailService;
 
