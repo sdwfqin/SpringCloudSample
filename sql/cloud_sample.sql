@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 11/12/2019 11:46:34
+ Date: 11/12/2019 17:06:21
 */
 
 SET NAMES utf8mb4;
@@ -44,15 +44,19 @@ CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `nick_name` varchar(255) DEFAULT NULL COMMENT '昵称',
+  `phone_number` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES (7, 'admin', '$2a$10$PM5VmnLbQO447rPizVQIMOsL09JZNuvIqi1papwG6MrGyyOZvP8gy', '管理员');
+INSERT INTO `user` VALUES (7, 'admin', '$2a$10$PM5VmnLbQO447rPizVQIMOsL09JZNuvIqi1papwG6MrGyyOZvP8gy', '管理员', '12345678901');
+INSERT INTO `user` VALUES (8, 'test1', '$2a$10$VAr5lfI1QjeUKaPvou4iY.8rG5igSiwLA7MPNgcyeKzSJpH/VRATS', NULL, NULL);
+INSERT INTO `user` VALUES (16, 'test2', '$2a$10$tMi3b/8qdJ67yjWbBjfvXe1Y.W6.BoozavULuIAicSOdQ.iv6xaGi', NULL, NULL);
+INSERT INTO `user` VALUES (17, 'test3', '$2a$10$QW0djbA5VcTHg6KGtJL.zuFLIK2RDh/TCCdc.ytXfvEygCTs2TO8y', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -74,6 +78,10 @@ CREATE TABLE `user_role` (
 BEGIN;
 INSERT INTO `user_role` VALUES (7, 3);
 INSERT INTO `user_role` VALUES (7, 4);
+INSERT INTO `user_role` VALUES (8, 4);
+INSERT INTO `user_role` VALUES (16, 3);
+INSERT INTO `user_role` VALUES (16, 4);
+INSERT INTO `user_role` VALUES (17, 4);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

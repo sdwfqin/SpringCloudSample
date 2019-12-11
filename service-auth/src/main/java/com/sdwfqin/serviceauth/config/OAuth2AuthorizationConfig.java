@@ -1,5 +1,6 @@
 package com.sdwfqin.serviceauth.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sdwfqin.serviceauth.service.impl.UserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     private RedisConnectionFactory redisConnectionFactory;
     @Autowired
     private UserDetailsServiceImpl userDetailService;
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     private static final String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("sdwfqin");
 

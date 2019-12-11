@@ -1,11 +1,15 @@
 package com.sdwfqin.serviceauth.controller;
 
 import com.sdwfqin.common.result.Result;
+import com.sdwfqin.common.result.ResultEnum;
 import com.sdwfqin.common.result.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
+import org.springframework.security.oauth2.common.exceptions.InvalidScopeException;
+import org.springframework.security.oauth2.common.exceptions.UnsupportedGrantTypeException;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +59,15 @@ public class OauthController {
         data.put("tokenType", token.getTokenType());
 
         return ResultUtils.success(data);
+    }
+
+    @ExceptionHandler({InvalidGrantException.class})
+    public Result grantExceptionHandler() {
+        return ResultUtils.errorData(ResultEnum.LOGIN_ERROR);
+    }
+
+    @ExceptionHandler({InvalidScopeException.class, UnsupportedGrantTypeException.class})
+    public Result validExceptionHandler() {
+        return ResultUtils.errorData(ResultEnum.VALID_ERROR);
     }
 }
