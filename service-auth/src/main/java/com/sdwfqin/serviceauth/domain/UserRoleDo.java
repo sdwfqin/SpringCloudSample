@@ -7,6 +7,6 @@ import java.io.Serializable;
 @Data
 public class UserRoleDo implements Serializable {
 
-    private Long user_id;
-    private Long role_id;
+    private Long userId;
+    private Long roleId;
 }

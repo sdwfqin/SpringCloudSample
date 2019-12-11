@@ -18,6 +18,7 @@ public class UserDo implements UserDetails, Serializable {
     private String password;
     // 昵称
     private String nickName;
+    private String phoneNumber;
     private List<RoleDo> authorities;
 
     @Override

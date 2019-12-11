@@ -1,6 +1,6 @@
 package com.sdwfqin.serviceauth.config;
 
-import com.sdwfqin.serviceauth.service.AuthUserDetailsService;
+import com.sdwfqin.serviceauth.service.impl.UserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private AuthUserDetailsService userDetailService;
+    private UserDetailsServiceImpl userDetailService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

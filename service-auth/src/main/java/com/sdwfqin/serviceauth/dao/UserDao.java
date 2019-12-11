@@ -1,12 +1,24 @@
 package com.sdwfqin.serviceauth.dao;
 
 import com.sdwfqin.serviceauth.domain.UserDo;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserDao {
 
-    @Select("SELECT * FROM user WHERE `username` = #{username}")
+    /**
+     * 根据用户名查找账号
+     *
+     * @param username
+     * @return
+     */
     List<UserDo> listUserByUserName(String username);
+
+    /**
+     * 添加账号
+     *
+     * @return
+     */
+    int save(UserDo userDo);
 }

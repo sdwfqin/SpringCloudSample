@@ -1,11 +1,16 @@
 package com.sdwfqin.serviceauth.controller;
 
+import com.sdwfqin.common.exception.ServiceException;
 import com.sdwfqin.common.result.Result;
+import com.sdwfqin.common.result.ResultEnum;
 import com.sdwfqin.common.result.ResultUtils;
 import com.sdwfqin.serviceauth.domain.UserDo;
+import com.sdwfqin.serviceauth.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +26,8 @@ public class UserController {
 
     @Autowired
     private ConsumerTokenServices consumerTokenServices;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
     public Principal getUser(Principal principal) {
@@ -56,8 +63,24 @@ public class UserController {
         return ResultUtils.success();
     }
 
-    @GetMapping("/register")
-    public Result register() {
-        return ResultUtils.success("注册");
+    @PostMapping("/register")
+    public Result register(@RequestParam("username") String username,
+                           @RequestParam("password") String password,
+                           @RequestParam("roleIds") Long[] roleIds) {
+
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            throw new ServiceException(ResultEnum.REGISTER_VALID_USER_ERROR);
+        }
+
+        if (roleIds == null || roleIds.length < 1) {
+            throw new ServiceException(ResultEnum.REGISTER_VALID_ROLE_ERROR);
+        }
+
+        UserDo userDo = new UserDo();
+        userDo.setUsername(username);
+        userDo.setPassword(new BCryptPasswordEncoder().encode(password));
+        userService.save(userDo, roleIds);
+
+        return ResultUtils.success();
     }
 }

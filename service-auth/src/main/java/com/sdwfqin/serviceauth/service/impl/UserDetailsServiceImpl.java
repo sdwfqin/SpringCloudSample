@@ -1,9 +1,9 @@
-package com.sdwfqin.serviceauth.service;
+package com.sdwfqin.serviceauth.service.impl;
 
-import com.sdwfqin.serviceauth.dao.UserDao;
-import com.sdwfqin.serviceauth.dao.UserRoleDao;
 import com.sdwfqin.serviceauth.domain.RoleDo;
 import com.sdwfqin.serviceauth.domain.UserDo;
+import com.sdwfqin.serviceauth.service.UserRoleService;
+import com.sdwfqin.serviceauth.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,21 +15,21 @@ import java.util.List;
 
 @Slf4j
 @Service("userDetailService")
-public class AuthUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserDao mUserDao;
+    private UserService userService;
     @Autowired
-    private UserRoleDao mUserRoleDao;
+    private UserRoleService userRoleService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        List<UserDo> userDos = mUserDao.listUserByUserName(userName);
+        List<UserDo> userDos = userService.listUserByUserName(userName);
         if (userDos == null || userDos.size() == 0) {
-            throw new UsernameNotFoundException("用不存在");
+            throw new UsernameNotFoundException("用户不存在");
         }
         UserDo userDo = userDos.get(0);
-        List<RoleDo> roleDos = mUserRoleDao.listRoleByUserId(userDo.getId());
+        List<RoleDo> roleDos = userRoleService.listRoleByUserId(userDo.getId());
         userDo.setAuthorities(roleDos);
         log.info(userDo.toString());
         return userDo;
