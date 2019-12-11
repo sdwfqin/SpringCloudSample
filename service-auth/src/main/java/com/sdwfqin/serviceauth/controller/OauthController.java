@@ -2,13 +2,17 @@ package com.sdwfqin.serviceauth.controller;
 
 import com.sdwfqin.common.result.Result;
 import com.sdwfqin.common.result.ResultUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
+import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,6 +24,7 @@ import java.util.Map;
  * @author 张钦
  * @date 2019/12/10
  */
+@Slf4j
 @RestController
 @RequestMapping("/oauth")
 public class OauthController {

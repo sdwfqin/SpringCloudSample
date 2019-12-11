@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : LocalMysql
+ Source Server         : localhost
  Source Server Type    : MySQL
  Source Server Version : 80018
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 05/11/2019 16:37:22
+ Date: 11/12/2019 11:46:34
 */
 
 SET NAMES utf8mb4;
@@ -43,6 +43,7 @@ CREATE TABLE `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nick_name` varchar(255) DEFAULT NULL COMMENT '昵称',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
@@ -51,7 +52,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES (7, 'admin', '$2a$10$PM5VmnLbQO447rPizVQIMOsL09JZNuvIqi1papwG6MrGyyOZvP8gy');
+INSERT INTO `user` VALUES (7, 'admin', '$2a$10$PM5VmnLbQO447rPizVQIMOsL09JZNuvIqi1papwG6MrGyyOZvP8gy', '管理员');
 COMMIT;
 
 -- ----------------------------
