@@ -28,16 +28,6 @@
 3. ribbon 负载均衡，获取服务提供者地址
 4. feign 声明式服务调用（简化ribbon）
 5. Hystrix 服务容错保护
-
-## 进行中
-
-1. Oauth2.0 认证授权（使用redis作为缓存）
-
-## TODO
-
-1. Config 分布式配置中心
-2. Stream 消息总线
-3. Sleuth 服务跟踪
-4. 日志
-5. TiDb
-6. 前端Demo（React，Ant Design Pro）
+6. Oauth2.0 认证授权（使用redis作为缓存）
+7. Aop拦截打印请求日志
+8. 全局异常处理
