@@ -52,6 +52,11 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 // 配置客户端域
                 .scopes("mobile")
                 .and()
+                .withClient("pc")
+                .secret(finalSecret)
+                .authorizedGrantTypes("password", "refresh_token")
+                .scopes("web")
+                .and()
                 .withClient("service")
                 .secret(finalSecret)
                 .authorizedGrantTypes("client_credentials", "refresh_token")

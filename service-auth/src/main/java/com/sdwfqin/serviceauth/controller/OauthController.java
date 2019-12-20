@@ -3,6 +3,7 @@ package com.sdwfqin.serviceauth.controller;
 import com.sdwfqin.common.result.Result;
 import com.sdwfqin.common.result.ResultEnum;
 import com.sdwfqin.common.result.ResultUtils;
+import com.sdwfqin.serviceauth.domain.UserDo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -10,7 +11,9 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.security.oauth2.common.exceptions.InvalidScopeException;
 import org.springframework.security.oauth2.common.exceptions.UnsupportedGrantTypeException;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +35,8 @@ public class OauthController {
 
     @Autowired
     private TokenEndpoint tokenEndpoint;
+    @Autowired
+    private ResourceServerTokenServices resourceServerTokenServices;
 
     @GetMapping("/token")
     public Result getAccessToken(Principal principal, @RequestParam Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
@@ -57,6 +62,10 @@ public class OauthController {
             data.put("refreshToken", token.getRefreshToken().getValue());
         }
         data.put("tokenType", token.getTokenType());
+
+        OAuth2Authentication oAuth2Authentication = resourceServerTokenServices.loadAuthentication(token.getValue());
+        UserDo userDo = (UserDo) oAuth2Authentication.getPrincipal();
+        data.put("user", userDo);
 
         return ResultUtils.success(data);
     }
