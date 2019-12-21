@@ -6,6 +6,7 @@ import com.sdwfqin.common.result.ResultUtils;
 import com.sdwfqin.serviceauth.domain.UserDo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
@@ -18,8 +19,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 自定义认证返回值
@@ -65,7 +65,17 @@ public class OauthController {
 
         OAuth2Authentication oAuth2Authentication = resourceServerTokenServices.loadAuthentication(token.getValue());
         UserDo userDo = (UserDo) oAuth2Authentication.getPrincipal();
-        data.put("user", userDo);
+        Map<String, Object> user = new LinkedHashMap<>();
+        user.put("id", userDo.getId());
+        user.put("username", userDo.getUsername());
+        user.put("nickName", userDo.getNickName());
+        data.put("user", user);
+
+        List<String> authorities = new ArrayList<>();
+        userDo.getAuthorities().forEach(o -> {
+            authorities.add(o.getAuthority());
+        });
+        data.put("authorities", authorities);
 
         return ResultUtils.success(data);
     }
