@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sdwfqin.serviceauth.dao.RoleDao">
+
+    <select id="get" parameterType="Long" resultType="com.sdwfqin.serviceauth.domain.RoleDo">
+        SELECT *
+        FROM sys_role
+        WHERE `id` = #{value}
+    </select>
+
+    <select id="list" resultType="com.sdwfqin.serviceauth.domain.RoleDo">
+        SELECT *
+        FROM sys_role
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="userIdCreate != null and userIdCreate != ''">and user_id_create = #{userIdCreate}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id asc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from sys_role
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="userIdCreate != null and userIdCreate != ''">and user_id_create = #{userIdCreate}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.sdwfqin.serviceauth.domain.RoleDo" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_user_role
+		(
+			`name`,
+			`description`,
+			`remark`,
+			`user_id_create`,
+			`create_time`,
+			`update_time`
+		)
+		values
+		(
+			#{name},
+			#{description},
+			#{remark},
+			#{userIdCreate},
+			now(),
+			now()
+		)
+	</insert>
+
+    <update id="update" parameterType="com.sdwfqin.serviceauth.domain.RoleDo">
+        update sys_user_role
+        <set>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="description != null">`description` = #{description},</if>
+            <if test="remark != null">`remark` = #{remark},</if>
+            `update_time` = now()
+        </set>
+        where id = #{id}
+    </update>
+
+	<delete id="remove">
+        delete from sys_user_role where id = #{value}
+    </delete>
+
+</mapper>

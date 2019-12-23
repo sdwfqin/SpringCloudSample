@@ -1,4 +1,4 @@
-package com.sdwfqin.serviceauth.dao;
+package com.sdwfqin.serviceauth.service;
 
 import com.sdwfqin.serviceauth.domain.RoleDo;
 
@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 角色
+ * 角色管理
  * <p>
  *
  * @author 张钦
- * @date 2019/12/23
+ * @date 2019/12/11
  */
-public interface RoleDao {
+public interface RoleService {
 
     RoleDo get(Long id);
 
@@ -25,5 +25,4 @@ public interface RoleDao {
     int update(RoleDo roleDo);
 
     int remove(Long id);
-
 }

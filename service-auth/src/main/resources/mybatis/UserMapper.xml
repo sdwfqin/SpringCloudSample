@@ -5,11 +5,11 @@
 <mapper namespace="com.sdwfqin.serviceauth.dao.UserDao">
 
     <select id="listUserByUserName" parameterType="String" resultType="com.sdwfqin.serviceauth.domain.UserDo">
-        select * from user where `username` = #{value}
+        select * from sys_user where `username` = #{value}
     </select>
 
     <insert id="save" parameterType="com.sdwfqin.serviceauth.domain.UserDo" useGeneratedKeys="true" keyProperty="id">
-		insert into user
+		insert into sys_user
 		(
 			`username`,
 			`password`,

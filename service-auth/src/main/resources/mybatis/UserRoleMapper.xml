@@ -5,14 +5,14 @@
 <mapper namespace="com.sdwfqin.serviceauth.dao.UserRoleDao">
 
     <select id="listRoleByUserId" parameterType="Long" resultType="com.sdwfqin.serviceauth.domain.RoleDo">
-        SELECT role.id, role.name
-        FROM user_role
-        LEFT JOIN role ON user_role.role_id = role.id
-        WHERE `user_id` = #{value}
+        SELECT sys_role.*
+        FROM sys_user_role
+        LEFT JOIN sys_role ON sys_user_role.role_id = sys_role.id
+        WHERE sys_user_role.user_id = #{value}
     </select>
 
     <insert id="save" parameterType="com.sdwfqin.serviceauth.domain.UserRoleDo">
-		insert into user_role
+		insert into sys_user_role
 		(
 			`user_id`,
 			`role_id`
