@@ -18,6 +18,7 @@ public class RoleDo implements GrantedAuthority, Serializable {
     private Long userIdCreate;
     private Date createTime;
     private Date updateTime;
+    private String userNameCreate;
 
     @Override
     public String getAuthority() {

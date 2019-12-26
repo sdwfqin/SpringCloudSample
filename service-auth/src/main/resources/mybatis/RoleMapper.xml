@@ -5,16 +5,18 @@
 <mapper namespace="com.sdwfqin.serviceauth.dao.RoleDao">
 
     <select id="get" parameterType="Long" resultType="com.sdwfqin.serviceauth.domain.RoleDo">
-        SELECT *
+        SELECT *, sys_user.nick_name as userNameCreate
         FROM sys_role
-        WHERE `id` = #{value}
+        left join sys_user on sys_role.user_id_create = sys_user.id
+        WHERE sys_role.id = #{value}
     </select>
 
     <select id="list" resultType="com.sdwfqin.serviceauth.domain.RoleDo">
-        SELECT *
+        SELECT *, sys_user.nick_name as userNameCreate
         FROM sys_role
+        left join sys_user on sys_role.user_id_create = sys_user.id
         <where>
-            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="id != null and id != ''">and sys_role.id = #{id}</if>
             <if test="userIdCreate != null and userIdCreate != ''">and user_id_create = #{userIdCreate}</if>
         </where>
         <choose>
@@ -22,7 +24,7 @@
                 order by ${sort} ${order}
             </when>
             <otherwise>
-                order by id asc
+                order by sys_role.id asc
             </otherwise>
         </choose>
         <if test="offset != null and limit != null">
@@ -70,7 +72,7 @@
         where id = #{id}
     </update>
 
-	<delete id="remove">
+    <delete id="remove">
         delete from sys_role where id = #{value}
     </delete>
 

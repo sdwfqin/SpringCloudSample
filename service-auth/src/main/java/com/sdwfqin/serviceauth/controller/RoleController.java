@@ -10,13 +10,11 @@ import com.sdwfqin.serviceauth.domain.RoleDo;
 import com.sdwfqin.serviceauth.domain.UserDo;
 import com.sdwfqin.serviceauth.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -56,6 +54,14 @@ public class RoleController {
         roleService.save(roleDo);
 
         return ResultUtils.success(roleDo);
+    }
+
+    @DeleteMapping("/remove")
+    public Result<Object> remove(@RequestParam("roleId") Long roleId) {
+
+        roleService.remove(roleId);
+
+        return ResultUtils.success(roleId);
     }
 
 }
