@@ -1,6 +1,7 @@
 package com.sdwfqin.serviceauth.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
