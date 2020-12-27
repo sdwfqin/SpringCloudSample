@@ -19,6 +19,6 @@ public class Test {
     @GetMapping("/test")
     public Result test(HttpServletRequest request){
         log.info(ContextUtils.getUserID() + "");
-        return ResultUtils.resultData(ResultEnum.SUCCESS,"hhh");
+        return ResultUtils.resultData(ResultEnum.SUCCESS, "hello");
     }
 }
