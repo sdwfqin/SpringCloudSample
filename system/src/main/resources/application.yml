@@ -84,10 +84,10 @@ management:
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8002/api/auth/user/current
+      user-info-uri: http://localhost:8002/auth/user/current
     client:
       client-id: service
       client-secret: sdwfqin
-      access-token-uri: http://localhost:8002/api/auth/oauth/token
-      user-authorization-uri: http://localhost:8002/api/auth/oauth/authorize
+      access-token-uri: http://localhost:8002/auth/oauth/token
+      user-authorization-uri: http://localhost:8002/auth/oauth/authorize
       scope: service
