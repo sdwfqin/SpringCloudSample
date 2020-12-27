@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdwfqin.cloudsample.auth.mapper.AuthPermissionMapper">
+
+    <select id="getUserPermissionList" resultType="java.lang.String">
+        select
+            auth_permission.name
+        from auth_permission
+                 left join auth_role_permission on auth_role_permission.premission_id = auth_permission.id
+                 left join auth_role on auth_role_permission.role_id = auth_role.id
+                 left join auth_user_role on auth_user_role.role_id = auth_role.id
+        where auth_user_role.user_id = #{userId} and auth_role.is_deleted = 0 and auth_permission.is_deleted = 0
+    </select>
+
+    <select id="getUserPermission" resultType="com.sdwfqin.cloudsample.common.entity.AuthPermissionDO">
+        select
+            auth_permission.id,
+            auth_permission.parent_id,
+            auth_permission.name,
+            auth_permission.description,
+            auth_permission.remark,
+            auth_permission.gmt_create as createTime,
+            auth_permission.gmt_modified as updateTime
+        from auth_permission
+                 left join auth_role_permission on auth_role_permission.premission_id = auth_permission.id
+                 left join auth_role on auth_role_permission.role_id = role.id
+                 left join auth_user_role on auth_user_role.role_id = role.id
+        where auth_user_role.user_id = #{userId} and auth_role.is_deleted = 0 and auth_permission.is_deleted = 0
+        order by auth_permission.id asc
+    </select>
+
+    <select id="getRolePermission" resultType="com.sdwfqin.cloudsample.common.entity.AuthPermissionDO">
+        select
+            auth_permission.id,
+            auth_permission.parent_id,
+            auth_permission.name,
+            auth_permission.description,
+            auth_permission.remark,
+            auth_permission.gmt_create as createTime,
+            auth_permission.gmt_modified as updateTime
+        from auth_permission
+                 left join auth_role_permission on auth_role_permission.premission_id = auth_permission.id
+        where auth_role_permission.role_id = #{roleId} and auth_permission.is_deleted = 0
+        order by auth_permission.id asc
+    </select>
+</mapper>

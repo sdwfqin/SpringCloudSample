@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdwfqin.cloudsample.auth.mapper.AuthRoleMapper">
+    <select id="getRoleById" resultType="com.sdwfqin.cloudsample.common.entity.AuthRoleDO">
+        select auth_role.id,auth_role.name,auth_role.description,auth_role.remark,auth_role.user_id_create as userIdCreate,auth_user.username as userNameCreate,auth_role.create_time as createTime,auth_role.update_time as updateTime
+        from auth_role
+                 left join auth_user ON auth_role.user_id_create = auth_user.id
+        where auth_role.id = #{value} and auth_role.is_deleted = 0
+    </select>
+
+    <select id="getRoleByName" resultType="com.sdwfqin.cloudsample.common.entity.AuthRoleDO">
+        select auth_role.id,auth_role.name,auth_role.description,auth_role.remark,auth_role.user_id_create as userIdCreate,auth_user.username as userNameCreate,auth_role.create_time as createTime,auth_role.update_time as updateTime
+        from auth_role
+                 left join auth_user ON auth_role.user_id_create = auth_user.id
+        where auth_role.name = #{value} and auth_role.is_deleted = 0
+    </select>
+
+    <select id="getRoleList" resultType="com.sdwfqin.cloudsample.common.entity.AuthRoleDO">
+        select
+        auth_role.id,
+        auth_role.name,
+        auth_role.description,
+        auth_role.remark,
+        auth_role.user_id_create as userIdCreate,
+        auth_user.username as userNameCreate,
+        auth_role.gmt_create as createTime,
+        auth_role.gmt_modified as updateTime
+        from auth_role
+        left join auth_user ON auth_role.user_id_create = auth_user.id
+        <where>
+            <if test="ids != null and ids.size != ''">
+                auth_role.id in
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            and auth_role.is_deleted = 0
+        </where>
+        order by id asc
+    </select>
+</mapper>

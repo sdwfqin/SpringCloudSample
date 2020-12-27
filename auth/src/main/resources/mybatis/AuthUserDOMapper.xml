@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdwfqin.cloudsample.auth.mapper.AuthUserMapper">
+    <resultMap id="userInfo" type="com.sdwfqin.cloudsample.common.entity.AuthUserDO">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="avatar" column="avatar"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="isEnable" column="is_enable"/>
+        <collection property="authRoles" ofType="com.sdwfqin.cloudsample.common.entity.AuthRoleDO">
+            <id property="id" column="roleId"/>
+            <result property="name" column="roleName"/>
+            <result property="description" column="roleDes"/>
+            <result property="remark" column="roleRemark"/>
+            <result property="userIdCreate" column="roleUserId"/>
+            <result property="userNameCreate" column="roleUserName"/>
+            <result property="gmtCreate" column="roleGmtCreate"/>
+            <result property="gmtModified" column="roleGmtModified"/>
+        </collection>
+    </resultMap>
+
+    <select id="getUserList" resultMap="userInfo">
+        select
+        auth_user.*,
+        auth_role.id as roleId,
+        auth_role.name as roleName,
+        auth_role.description as roleDes,
+        auth_role.remark as roleRemark,
+        auth_role.user_id_create as roleUserId,
+        (select auth_user.username from auth_user where id = auth_role.user_id_create) as roleUserName,
+        auth_role.gmt_create as roleGmtCreate,
+        auth_role.gmt_modified as roleGmtModified
+        from auth_user
+        left join auth_user_role ON auth_user_role.user_id = auth_user.id
+        left join auth_role ON auth_role.id = auth_user_role.role_id
+        <where>
+            <if test="roleId != null and roleId != ''">and auth_role.id = #{roleId}</if>
+            and auth_user.is_deleted = 0
+        </where>
+        order by auth_user.id asc
+    </select>
+
+    <select id="getUserVo" resultType="com.sdwfqin.cloudsample.common.entity.AuthUserDO">
+        select
+        id,
+        username,
+        nick_name,
+        phone_number,
+        avatar,
+        level
+        from auth_user
+        <where>
+            and auth_user.id = #{value}
+            and auth_user.is_deleted = 0
+        </where>
+    </select>
+
+</mapper>

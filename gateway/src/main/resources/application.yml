@@ -1,0 +1,33 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 是否与服务注册于发现组件进行结合，通过 serviceId 转发到具体的服务实例。
+          # 默认为 false，设为 true 便开启通过服务中心的自动根据 serviceId 创建路由的功能。
+          enabled: true
+          lower-case-service-id: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: info
+
+#暴露健康监测接口给admin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

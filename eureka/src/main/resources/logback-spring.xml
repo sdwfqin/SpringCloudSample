@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--文件配置指南 https://www.cnblogs.com/gavincoder/p/10091757.html-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{36}) [%line]- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--按天生成日志-->
+    <appender name="logFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                logs/eureka/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
+            </FileNamePattern>　　　　　　　　　　　
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} -%msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <logger name="com.sdwfqin" additivity="false" level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="logFile"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="logFile"/>
+    </root>
+
+</configuration>
