@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdwfqin.cloudsample.auth.mapper.AuthRoleMapper">
     <select id="getRoleById" resultType="com.sdwfqin.cloudsample.common.entity.AuthRoleDO">
-        select auth_role.id,auth_role.name,auth_role.description,auth_role.remark,auth_role.user_id_create as userIdCreate,auth_user.username as userNameCreate,auth_role.create_time as createTime,auth_role.update_time as updateTime
+        select auth_role.id,auth_role.name,auth_role.description,auth_role.remark,auth_role.user_id_create as userIdCreate,auth_user.username as userNameCreate,auth_role.gmt_create,auth_role.gmt_modified
         from auth_role
                  left join auth_user ON auth_role.user_id_create = auth_user.id
         where auth_role.id = #{value} and auth_role.is_deleted = 0
     </select>
 
     <select id="getRoleByName" resultType="com.sdwfqin.cloudsample.common.entity.AuthRoleDO">
-        select auth_role.id,auth_role.name,auth_role.description,auth_role.remark,auth_role.user_id_create as userIdCreate,auth_user.username as userNameCreate,auth_role.create_time as createTime,auth_role.update_time as updateTime
+        select auth_role.id,auth_role.name,auth_role.description,auth_role.remark,auth_role.user_id_create as userIdCreate,auth_user.username as userNameCreate,auth_role.gmt_create,auth_role.gmt_modified
         from auth_role
                  left join auth_user ON auth_role.user_id_create = auth_user.id
         where auth_role.name = #{value} and auth_role.is_deleted = 0
@@ -23,8 +23,8 @@
         auth_role.remark,
         auth_role.user_id_create as userIdCreate,
         auth_user.username as userNameCreate,
-        auth_role.gmt_create as createTime,
-        auth_role.gmt_modified as updateTime
+        auth_role.gmt_create,
+        auth_role.gmt_modified
         from auth_role
         left join auth_user ON auth_role.user_id_create = auth_user.id
         <where>

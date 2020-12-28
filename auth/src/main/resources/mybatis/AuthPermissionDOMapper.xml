@@ -19,8 +19,8 @@
             auth_permission.name,
             auth_permission.description,
             auth_permission.remark,
-            auth_permission.gmt_create as createTime,
-            auth_permission.gmt_modified as updateTime
+            auth_permission.gmt_create,
+            auth_permission.gmt_modified
         from auth_permission
                  left join auth_role_permission on auth_role_permission.premission_id = auth_permission.id
                  left join auth_role on auth_role_permission.role_id = role.id
@@ -36,8 +36,8 @@
             auth_permission.name,
             auth_permission.description,
             auth_permission.remark,
-            auth_permission.gmt_create as createTime,
-            auth_permission.gmt_modified as updateTime
+            auth_permission.gmt_create,
+            auth_permission.gmt_modified
         from auth_permission
                  left join auth_role_permission on auth_role_permission.premission_id = auth_permission.id
         where auth_role_permission.role_id = #{roleId} and auth_permission.is_deleted = 0
