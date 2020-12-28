@@ -47,6 +47,6 @@
 2. SpringAdmin
     - http://127.0.0.1:8008/admin/
 3. Eureka
-    - http://127.0.0.1:8761/
+    - http://127.0.0.1:8001/
 4. Druid
     - http://127.0.0.1:${port}/druid/
