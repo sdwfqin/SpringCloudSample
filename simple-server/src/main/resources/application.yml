@@ -76,6 +76,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    logfile:
+      enabled: true
+      external-file: logs/simple/output.log
 
 eureka:
   client:

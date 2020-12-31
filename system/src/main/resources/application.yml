@@ -81,6 +81,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    logfile:
+      enabled: true
+      external-file: logs/system/output.log
 
 security:
   oauth2:

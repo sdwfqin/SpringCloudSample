@@ -34,3 +34,6 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    logfile:
+      enabled: true
+      external-file: logs/gateway/output.log
