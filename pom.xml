@@ -31,8 +31,7 @@
         <module>eureka</module>
         <!-- zuul改为gateway -->
         <!-- <module>api-zuul</module> -->
-        <module>simple-client</module>
-        <module>simple-consumer</module>
+        <module>simple-server</module>
         <module>auth</module>
         <module>gateway</module>
         <module>system</module>

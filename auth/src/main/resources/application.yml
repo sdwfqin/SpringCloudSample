@@ -72,7 +72,8 @@ spring:
 logging:
   level:
     root: info
-    com.pansoft: debug
+    com.sdwfqin: debug
+  config: classpath:logback-spring.xml
 
 feign:
   client:

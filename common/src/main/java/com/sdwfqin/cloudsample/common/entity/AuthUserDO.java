@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -47,6 +48,7 @@ public class AuthUserDO implements UserDetails, Serializable {
 
     @ApiModelProperty(value = "密码")
     @TableField("password")
+    @JsonIgnore
     private String password;
 
     @ApiModelProperty(value = "昵称")

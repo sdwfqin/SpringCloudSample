@@ -2,27 +2,33 @@
 <!--文件配置指南 https://www.cnblogs.com/gavincoder/p/10091757.html-->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
+    <property name="LOG_HOME" value="logs/auth" />
+
+    <!-- 日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN" value="%d{HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{36}) [%line]- %msg%n"/>
+
     <!--输出到控制台-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{36}) [%line]- %msg%n</pattern>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 
     <!--按天生成日志-->
     <appender name="logFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Prudent>true</Prudent>
+        <file>${LOG_HOME}/output.log</file>
+        <!--日志文档输出格式-->
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>
-                logs/auth/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
-            </FileNamePattern>　　　　　　　　　　　
+                ${LOG_HOME}/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
+            </FileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>
-                %d{yyyy-MM-dd HH:mm:ss} -%msg%n
-            </Pattern>
-        </layout>
     </appender>
 
     <logger name="com.sdwfqin" additivity="false" level="info">

@@ -1,9 +1,10 @@
 server:
-  port: 8003
+  port: 8004
+
 spring:
   application:
     # 指定微服务的名称
-    name: simple-client
+    name: simple
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cloud_sample?useUnicode=true&characterEncoding=UTF-8&characterSetResults=utf8&serverTimezone=GMT&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
@@ -50,7 +51,8 @@ spring:
 logging:
   level:
     root: info
-    com.pansoft: debug
+    com.sdwfqin: debug
+  config: classpath:logback-spring.xml
 
 feign:
   client:
@@ -75,6 +77,12 @@ management:
     health:
       show-details: ALWAYS
 
+eureka:
+  client:
+    serviceUrl:
+      # 指定服务注册中心的位置
+      defaultZone: http://localhost:8001/eureka/
+
 security:
   oauth2:
     resource:
@@ -85,9 +93,3 @@ security:
       access-token-uri: http://localhost:8002/auth/oauth/token
       user-authorization-uri: http://localhost:8002/auth/oauth/authorize
       scope: service
-
-eureka:
-  client:
-    serviceUrl:
-      # 指定服务注册中心的位置
-      defaultZone: http://localhost:8001/eureka/

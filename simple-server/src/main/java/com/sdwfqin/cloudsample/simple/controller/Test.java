@@ -1,4 +1,4 @@
-package com.sdwfqin.cloudsample.consumer.controller;
+package com.sdwfqin.cloudsample.simple.controller;
 
 import com.sdwfqin.cloudsample.common.annotation.Log;
 import com.sdwfqin.cloudsample.common.result.Result;

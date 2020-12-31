@@ -20,7 +20,10 @@ eureka:
 
 logging:
   level:
+    root: info
+    com.sdwfqin: debug
     org.springframework.cloud.gateway: info
+  config: classpath:logback-spring.xml
 
 #暴露健康监测接口给admin
 management:

@@ -1,4 +1,4 @@
-package com.sdwfqin.cloudsample.consumer;
+package com.sdwfqin.cloudsample.simple;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -13,23 +13,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients(basePackages = {"com.sdwfqin.cloudsample.*"})
 @EnableEurekaClient
 @SpringBootApplication(scanBasePackages = {"com.sdwfqin.cloudsample.*"})
-public class SimpleConsumerApplication {
-
-//    /**
-//     * 初始化RestTemplate，用来真正发起REST请求
-//     * ribbon与LoadBalancerClient只能二选一，ribbon可以与feign共存
-//     *
-//     * TODO: 这里是给ribbon或LoadBalancerClient用的
-//     */
-//    @Bean
-//    // 这个注解是给ribbon用的
-//    @LoadBalanced
-//    public RestTemplate restTemplate() {
-//        return new RestTemplate();
-//    }
+public class SimpleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SimpleConsumerApplication.class, args);
+        SpringApplication.run(SimpleApplication.class, args);
     }
 
 }
