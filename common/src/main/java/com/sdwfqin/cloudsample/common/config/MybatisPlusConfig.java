@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * mybatis plus 配置
@@ -44,13 +44,13 @@ public class MybatisPlusConfig {
 
         @Override
         public void insertFill(MetaObject metaObject) {
-            this.setFieldValByName("gmtCreate", new Date(), metaObject);//版本号3.0.6以及之前的版本
-            this.setFieldValByName("gmtModified", new Date(), metaObject);
+            this.strictInsertFill(metaObject, "gmtCreate", LocalDateTime::now, LocalDateTime.class); // 起始版本 3.3.3(推荐)
+            this.strictInsertFill(metaObject, "gmtModified", LocalDateTime::now, LocalDateTime.class); // 起始版本 3.3.3(推荐)
         }
 
         @Override
         public void updateFill(MetaObject metaObject) {
-            this.setFieldValByName("gmtModified", new Date(), metaObject);
+            this.strictUpdateFill(metaObject, "gmtModified", LocalDateTime::now, LocalDateTime.class); // 起始版本 3.3.3(推荐)
         }
     }
 

@@ -1,12 +1,14 @@
 server:
   port: 8008
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8001/eureka/
 spring:
   application:
     name: system
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
   boot:
     admin:
       context-path: admin
@@ -70,7 +72,9 @@ feign:
 # mybatis plus 配置
 mybatis-plus:
   mapper-locations: classpath*:/mybatis/*Mapper.xml
-  global-config.db-config.id-type: auto
+  global-config:
+    db-config:
+      id-type: AUTO
 
 #暴露健康监测接口给admin
 management:

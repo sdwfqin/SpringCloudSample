@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.ConstraintViolationException;
-
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandle {
@@ -21,8 +19,7 @@ public class ExceptionHandle {
         if (e instanceof ServiceException) {
             ServiceException serviceException = (ServiceException) e;
             return ResultUtils.errorData(serviceException.getCode(), serviceException.getMessage());
-        } else if (e instanceof ConstraintViolationException
-                || e instanceof MissingServletRequestParameterException) {
+        } else if (e instanceof MissingServletRequestParameterException) {
             return ResultUtils.errorData(ResultEnum.VALID_ERROR.getCode(), ResultEnum.VALID_ERROR.getMsg());
         }
         log.error("【系统异常】", e);

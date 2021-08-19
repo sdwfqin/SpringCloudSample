@@ -5,6 +5,12 @@ spring:
   application:
     # 指定微服务的名称
     name: auth
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cloud_sample?useUnicode=true&characterEncoding=UTF-8&characterSetResults=utf8&serverTimezone=GMT&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
@@ -86,7 +92,9 @@ feign:
 # mybatis plus 配置
 mybatis-plus:
   mapper-locations: classpath*:/mybatis/*Mapper.xml
-  global-config.db-config.id-type: auto
+  global-config:
+    db-config:
+      id-type: AUTO
 
 #暴露健康监测接口给admin
 management:
@@ -100,9 +108,3 @@ management:
     logfile:
       enabled: true
       external-file: logs/auth/output.log
-
-eureka:
-  client:
-    serviceUrl:
-      # 指定服务注册中心的位置
-      defaultZone: http://localhost:8001/eureka/
